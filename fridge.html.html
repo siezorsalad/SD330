@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Refrigerator Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .display {
+            width: 400px;
+            height: 300px;
+            background-color: #7cc4d6;
+            border: 2px solid #000;
+            border-radius: 10px;
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        .header {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover{
+            background-color: #306e33;
+        }
+
+        #clock {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #temperature {
+            font-size: 36px;
+        }
+
+        #fridge-content {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        #tv-display {
+            display: url(fridgeopen.png); 
+        }
+
+        #browser-display {
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="display">
+        <div class="header">
+            Refrigerator Display
+        </div>
+        <div class="content">
+            <!--button class along with the other display options-->
+            <button class="button" id="power-button">Power On</button>
+            <div id="clock">00:00:00</div>
+            <div id="temperature">Temperature: 0°C</div>
+            <div id="fridge-content">Fridge Contents: Empty
+                <iframe id="fridge-iframe" width="100%" height="200" frameborder="0"></iframe>
+            </div>
+            <div id="tv-display">
+
+                TV Display
+            </div>
+            <div id="browser-display">
+        
+                Browser Display
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const powerButton = document.getElementById("power-button");
+        const clockDisplay = document.getElementById("clock");
+        const temperatureDisplay = document.getElementById("temperature");
+        const fridgeIframe = document.getElementById("fridge-iframe");
+        const fridgeContentDisplay = document.getElementById("fridge-content");
+        const tvDisplay = document.getElementById("tv-display");
+        const browserDisplay = document.getElementById("browser-display");
+
+        let isOn = false;
+
+        // Function to update the clock
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            clockDisplay.textContent = time;
+        }
+        
+
+        // Function to toggle power
+        function togglePower() {
+            isOn = !isOn;
+            if (isOn) {
+                powerButton.textContent = "Power Off";
+                setInterval(updateClock, 1000); // Update clock every second
+                temperatureDisplay.textContent = "Temperature: 4°C"; // Update temperature
+                fridgeIframe.src = png(fridgeopen.png); // Set the URL to the open fridge image
+                fridgeContentDisplay.textContent = "Fridge Contents: Apples, Milk, Eggs"; // Update fridge contents
+                tvDisplay.style.display = "block"; // Show TV display
+                browserDisplay.style.display = "block"; // Show browser display
+            } else {
+                powerButton.textContent = "Power On";
+                clearInterval(updateClock);
+                temperatureDisplay.textContent = "Temperature: 0°C";
+                fridgeContentDisplay.textContent = "Fridge Contents: Empty";
+                tvDisplay.style.display = "none";
+                browserDisplay.style.display = "none";
+            }
+        }
+
+        powerButton.addEventListener("click", togglePower);
+    </script>
+</body>
+</html>
