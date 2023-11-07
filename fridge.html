@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Refrigerator Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0deff7; /* Light blue background color */
+            text-align: center;
+        }
+
+        .display {
+            width: fit-content;
+            height: fit-content;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 10px;
+            text-align: center;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .header {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .button {
+            padding: 10px;
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        #power-button {
+            background-color: #ff0000; 
+            color: #fff;
+            
+        }
+
+        #power-button.on {
+            background-color: #00ff00; 
+        }
+
+        #clock {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #temperature {
+            font-size: 20px;
+        }
+
+        #inside-fridge {
+            font-size: 16px;
+            text-align: center;
+        }
+
+        #minute-timer {
+            font-size: 16px;
+        }
+
+        #start-timer {
+            background-color: #4CAF50; 
+            color: #fff;
+            text-align: center;
+            margin: auto;
+        }
+
+        #stop-timer {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        /* Additional styles for timer display and shopping list */
+        #timer-display {
+            font-size: 24px;
+            margin: 10px;
+        }
+
+        #shopping-list ul {
+            list-style-type: none;
+            padding: 1px;
+            border: #000;
+        }
+
+        #shopping-list li {
+            font-size: 16px;
+            border-bottom: 1px solid #ccc;
+            padding: 5px 0;
+        }
+
+        #music-player{
+            margin-left: auto;
+        }
+        #fridge-image{
+            max-width: 100%;
+        }
+        #toggle-temperature-unit{
+            padding: 10px;
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer;
+            margin: 5px;
+        }
+        #toggle-clock-format{
+            padding: 10px;
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer;
+            margin: 5px;
+            text-align: center;
+        }
+        #increase-temperature{
+            padding: 10px;
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer;
+            margin: 5px;
+            text-align: center;
+            
+        }
+        #decrease-temperature{
+            padding: 10px;
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer;
+            margin: 5px;            
+            text-align: center;
+   
+        }
+
+    </style>
+</head>
+<body>
+    <div class="display">
+        <div class="header">
+            Refrigerator Display
+        </div>
+        <div class="content">
+            <button class="button" id="power-button">Power On</button>
+            <div id="clock">12:00:00</div>
+            <button id="toggle-clock-format" style="display: none;">Switch to 12-hour format</button>
+            <div id="inside-fridge">
+                <div id="inside-fridge">
+                    
+                    <img id="fridge-image" src="https://kitchenaid-h.assetsadobe.com/is/image/content/dam/business-unit/whirlpoolv2/en-us/marketing-content/site-assets/page-content/oc-articles/types-of-refrigerators/types-of-refrigerators_2.jpg?fmt=png-alpha&qlt=85,0&resMode=sharp2&op_usm=1.75,0.3,2,0&scl=1&constrain=fit,1" alt="Fridge Contents">
+            </div>
+            <button id="fridge-contents-button" class="button">Show Fridge Contents</button>
+            <div id="temperature">Temperature: <span id="temp-value">0</span><span id="temp-unit">°C</span></div>
+            <button id="toggle-temperature-unit" style="display: none;">Switch to F</button>
+            <button id="increase-temperature" style="display: none;">+</button>
+            <button id="decrease-temperature" style="display: none;">-</button>
+            <div id="weather-forecast">
+                Weather Forecast: Sunny
+            </div>
+            <div id="minute-timer">
+                <span id="timer-display">00:00</span>
+                <button id="start-timer">Start Timer</button>
+            </div>
+            <audio id="alarm" src="alarm.mp3"></audio>
+            <div id="shopping-list">
+                <h3>Shopping List</h3>
+                <ul>
+                    <li>Milk</li>
+                    <li>Turkey</li>
+                    <li>Eggs</li>
+                    <li>Root Beer</li>
+                    <li>Garlic</li>
+                </ul>
+                <input type="text" id="add-item-input" placeholder="Add an item">
+                <button id="add-item-button">Add</button>
+            </div>
+            <div id="window">
+                <!-- You can add an image or content for the window here -->
+            </div>
+            <div id="tv-screen">
+                <!-- You can embed a video or play sound when turned on -->
+            </div>
+            <div id="browser">
+                <iframe src='https://www.google.com/'>
+                </iframe>
+            </div>
+            <div id="music-player">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4w34xOG4R20bcijSufbq8l?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+      
+
+        // Sample random temperature value between -20°C and 10°C
+        const initialTemperature = Math.floor(Math.random() * 31) - 20;
+        let currentTemperature = initialTemperature;
+        let temperatureUnit = "C";
+
+        
+        const powerButton = document.getElementById("power-button");
+        const toggleClockFormatButton = document.getElementById("toggle-clock-format");
+        const clockDisplay = document.getElementById("clock");
+        const fridgeContentsButton = document.getElementById("fridge-contents-button");
+        const temperatureDisplay = document.getElementById("temperature");
+        const tempValueDisplay = document.getElementById("temp-value");
+        const tempUnitDisplay = document.getElementById("temp-unit");
+        const toggleTemperatureUnitButton = document.getElementById("toggle-temperature-unit");
+        const increaseTemperatureButton = document.getElementById("increase-temperature");
+        const decreaseTemperatureButton = document.getElementById("decrease-temperature");
+        const weatherForecast = document.getElementById("weather-forecast");
+        const minuteTimer = document.getElementById("minute-timer");
+        const timerDisplay = document.getElementById("timer-display");
+        const startTimerButton = document.getElementById("start-timer");
+        const alarmSound = document.getElementById("alarm");
+        const shoppingList = document.getElementById("shopping-list");
+        const addItemInput = document.getElementById("add-item-input");
+        const addItemButton = document.getElementById("add-item-button");
+        const tvScreenDisplay = document.getElementById("tv-screen"); 
+        const browserDisplay = document.getElementById("browser"); 
+        const musicPlayerDisplay = document.getElementById("music-player"); 
+        const windowDisplay = document.getElementById("window");
+        const insideFridge = document.getElementById("inside-fridge")
+
+
+        let isOn = false;
+        let isTimerRunning = false;
+        let timerInterval;
+
+        // Function to update the clock
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const format = hours >= 12 ? "PM" : "AM";
+            const hour12 = hours % 12 || 12;
+            const time = `${hour12}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${format}`;
+            clockDisplay.textContent = time;
+        }
+
+        // Function to toggle the clock format (12/24-hour)
+        function toggleClockFormat() {
+            if (clockDisplay.textContent.includes("AM") || clockDisplay.textContent.includes("PM")) {
+                clockDisplay.textContent = clockDisplay.textContent.replace(" AM", "").replace(" PM", "");
+                toggleClockFormatButton.textContent = "Switch to 12-hour format";
+            } else {
+                updateClock();
+                toggleClockFormatButton.textContent = "Switch to 24-hour format";
+            }
+        }
+
+        // Function to toggle power
+        function togglePower() {
+            isOn = !isOn;
+            if (isOn) {
+                powerButton.textContent = "Power Off";
+                toggleClockFormatButton.style.display = "block";
+                setInterval(updateClock, 1000); // Update clock every second
+                temperatureDisplay.style.display = "block";
+                insideFridge.style.display = "block"
+                toggleTemperatureUnitButton.style.display = "block";
+                increaseTemperatureButton.style.display = "block";
+                decreaseTemperatureButton.style.display = "block";
+                weatherForecast.style.display = "block";
+                minuteTimer.style.display = "block";
+                shoppingList.style.display = "block";
+                windowDisplay.style.display = "block";
+                tvScreenDisplay.style.display = "block";
+                browserDisplay.style.display = "block";
+                musicPlayerDisplay.style.display = "block";
+                
+            } else {
+                powerButton.textContent = "Power On";
+                toggleClockFormatButton.style.display = "none";
+                clearInterval(updateClock);
+                insideFridge.style.display ="none"
+                temperatureDisplay.style.display = "none";
+                toggleTemperatureUnitButton.style.display = "none";
+                increaseTemperatureButton.style.display = "none";
+                decreaseTemperatureButton.style.display = "none";
+                weatherForecast.style.display = "none";
+                minuteTimer.style.display = "none";
+                shoppingList.style.display = "none";
+                windowDisplay.style.display = "none";
+                tvScreenDisplay.style.display = "none";
+                browserDisplay.style.display = "none";
+                musicPlayerDisplay.style.display = "none";
+                stopTimer();
+            }
+        }
+
+        // Function to toggle temperature unit (Celsius/Fahrenheit)
+        function toggleTemperatureUnit() {
+            if (temperatureUnit === "C") {
+                temperatureUnit = "F";
+                tempUnitDisplay.textContent = "°F";
+            } else {
+                temperatureUnit = "C";
+                tempUnitDisplay.textContent = "°C";
+            }
+        }
+
+        // Function to increase the temperature
+        function increaseTemperature() {
+            currentTemperature++;
+            tempValueDisplay.textContent = currentTemperature;
+        }
+
+        // Function to decrease the temperature
+        function decreaseTemperature() {
+            currentTemperature--;
+            tempValueDisplay.textContent = currentTemperature;
+        }
+
+        // Function to start the minute timer
+        function startTimer() {
+            if (!isTimerRunning) {
+                isTimerRunning = true;
+                const minutes = 1;
+                const startTime = Date.now();
+                const endTime = startTime + minutes * 60 * 1000;
+
+                timerInterval = setInterval(function () {
+                    const remainingTime = endTime - Date.now();
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        timerDisplay.textContent = "00:00";
+                        alarmSound.play();
+                    } else {
+                        const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    }
+                }, 1000);
+            }
+        }
+
+        // Function to stop the timer
+        function stopTimer() {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerDisplay.textContent = "00:00";
+        }
+
+        // Function to add an item to the shopping list
+        function addItemToList() {
+            const newItemText = addItemInput.value;
+            if (newItemText.trim() !== "") {
+                const shoppingListItems = shoppingList.querySelector("ul");
+                const newItem = document.createElement("li");
+                newItem.textContent = newItemText;
+                shoppingListItems.appendChild(newItem);
+                addItemInput.value = "";
+            }
+        }
+
+        // Add event listeners
+        powerButton.addEventListener("click", togglePower);
+        toggleClockFormatButton.addEventListener("click", toggleClockFormat);
+        toggleTemperatureUnitButton.addEventListener("click", toggleTemperatureUnit);
+        increaseTemperatureButton.addEventListener("click", increaseTemperature);
+        decreaseTemperatureButton.addEventListener("click", decreaseTemperature);
+        startTimerButton.addEventListener("click", startTimer);
+        addItemButton.addEventListener("click", addItemToList);
+        fridgeContentsButton.addEventListener("click", function() {
+        });
+    </script>
+</body>
+</html>
