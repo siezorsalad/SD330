@@ -1,0 +1,148 @@
+{
+  "courses": [
+    {
+      "course_name": "Introduction to Computer Science",
+      "course_code": "CS101",
+      "instructor": "Dr. Smith",
+      "credits": 3,
+      "schedule": "MWF 10:00 AM - 11:30 AM",
+      "location": "Room 201",
+      "books": [
+        {
+          "title": "Python Programming",
+          "author": "John Doe",
+          "isbn": "978-0123456789",
+          "publisher": "Tech Press",
+          "published_year": 2020
+        },
+        {
+          "title": "Introduction to Algorithms",
+          "author": "Thomas H. Cormen",
+          "isbn": "978-0262033848",
+          "publisher": "MIT Press",
+          "published_year": 2009
+        }
+      ]
+    },
+    {
+      "course_name": "Web Development",
+      "course_code": "WD201",
+      "instructor": "Prof. Johnson",
+      "credits": 4,
+      "schedule": "TTh 1:00 PM - 2:30 PM",
+      "location": "Room 305",
+      "books": [
+        {
+          "title": "HTML & CSS: Design and Build Websites",
+          "author": "Jon Duckett",
+          "isbn": "978-1118008188",
+          "publisher": "Wiley",
+          "published_year": 2011
+        },
+        {
+          "title": "JavaScript: The Good Parts",
+          "author": "Douglas Crockford",
+          "isbn": "978-0596517748",
+          "publisher": "O'Reilly Media",
+          "published_year": 2008
+        }
+      ]
+    },
+    {
+      "course_name": "Data Science Fundamentals",
+      "course_code": "DS101",
+      "instructor": "Dr. Rodriguez",
+      "credits": 3,
+      "schedule": "MWF 10:00 AM - 11:30 AM",
+      "location": "Room 201",
+      "books": [
+        {
+          "title": "Statistics for Data Science",
+          "author": "Alice Johnson",
+          "isbn": "978-0123456789",
+          "publisher": "Data Books",
+          "published_year": 2021
+        },
+        {
+          "title": "Python for Data Analysis",
+          "author": "Wes McKinney",
+          "isbn": "978-1491957660",
+          "publisher": "O'Reilly Media",
+          "published_year": 2017
+        }
+      ]
+    },
+    {
+      "course_name": "Artificial Intelligence Basics",
+      "course_code": "AI201",
+      "instructor": "Prof. Wang",
+      "credits": 4,
+      "schedule": "TTh 1:00 PM - 2:30 PM",
+      "location": "Room 305",
+      "books": [
+        {
+          "title": "Artificial Intelligence: A New Synthesis",
+          "author": "Nils J. Nilsson",
+          "isbn": "978-1558604674",
+          "publisher": "Morgan Kaufmann",
+          "published_year": 2009
+        },
+        {
+          "title": "Deep Learning",
+          "author": "Ian Goodfellow",
+          "isbn": "978-0262035613",
+          "publisher": "MIT Press",
+          "published_year": 2016
+        }
+      ]
+    },
+    {
+      "course_name": "Introduction to Marketing",
+      "course_code": "MKT101",
+      "instructor": "Dr. Patel",
+      "credits": 3,
+      "schedule": "MWF 11:00 AM - 12:30 PM",
+      "location": "Room 301",
+      "books": [
+        {
+          "title": "Principles of Marketing",
+          "author": "Philip Kotler",
+          "isbn": "978-0133856460",
+          "publisher": "Pearson",
+          "published_year": 2015
+        },
+        {
+          "title": "Contagious: How to Build Word of Mouth in the Digital Age",
+          "author": "Jonah Berger",
+          "isbn": "978-1451686579",
+          "publisher": "Simon & Schuster",
+          "published_year": 2013
+        }
+      ]
+    },
+    {
+      "course_name": "History of Art",
+      "course_code": "ART203",
+      "instructor": "Prof. Johnson",
+      "credits": 4,
+      "schedule": "TTh 2:00 PM - 3:30 PM",
+      "location": "Room 201",
+      "books": [
+        {
+          "title": "The Story of Art",
+          "author": "E.H. Gombrich",
+          "isbn": "978-0714832470",
+          "publisher": "Phaidon Press",
+          "published_year": 1995
+        },
+        {
+          "title": "Ways of Seeing",
+          "author": "John Berger",
+          "isbn": "978-0140135152",
+          "publisher": "Penguin",
+          "published_year": 1977
+        }
+      ]
+    } 
+  ]
+}
