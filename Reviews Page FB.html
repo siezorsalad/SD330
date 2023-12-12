@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <title>FoxBooks - Products </title>
+  <style>
+    .book-details {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .book-details img {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 80px;
+    }
+    h1 {
+      background: linear-gradient(to right, yellow, red);
+      padding: 10px;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 img {
+      width: 80px;
+      height: auto;
+      margin-bottom: 5px;
+    }
+
+    nav {
+      background-color: #333;
+      color: white;
+      text-align: left;
+      padding: 22px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      display: inline;
+      margin-right: 10px;
+      position: relative;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 15px;
+      display: inline-block;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+      background-color: #C8102E;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+      .toggle-btn {
+      cursor: pointer;
+      padding: 10px;
+      background-color: #4CAF50; 
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+      .toggle-btn:hover {
+        background-color: #45a049; 
+      }
+      .reviews {
+        max-height: 200px; 
+        overflow-y: auto; 
+        margin-top: 20px; 
+        padding: 10px; 
+        border: 1px solid #ddd; 
+      }
+
+      .reviews h3 {
+        margin-bottom: 10px; 
+      }
+
+      .reviews form {
+        margin-top: 10px; 
+      }
+
+    
+
+  </style>
+</head>
+<body>
+  <h1><img src="fox-books-high-resolution-logo-transparent.png" alt="FoxBooks logo"></h1>
+  <nav>
+    <ul>
+      <li><a href="Home Page FB.html">Home</a></li>
+      <li><a href="Reviews Page FB.html">Products</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li>
+        <a href="CheckoutFB.html"><i class="fas fa-shopping-cart"></i> Shopping Cart</a>
+      </li>
+      
+      <li>
+        <div class="search-container">
+          <input type="text" placeholder="Search..." id="searchInput">
+          <button onclick="searchBooks()">Search</button>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  
+  <div class="breadcrumb" id="breadcrumb">
+    <a href="foxbooks.html">Home</a> > <a href="Courses.html">Courses</a> > Product Details
+  </div>
+
+  
+
+  <div class="book-details" id="bookDetails">
+    
+  </div>
+  <div class="reviews">
+    <h3>Customer Reviews</h3>
+    <form id="reviewForm">
+      <label for="userReview">Add Your Review:</label>
+      <textarea id="userReview" name="userReview" rows="4" cols="50"></textarea>
+      <button type="button" onclick="addUserReview()">Submit Review</button>
+    </form>
+    
+  </div>
+
+  <script>
+    function searchBooks() {
+    const searchTerm = document.getElementById('searchInput').value;
+    
+    alert(`Searching for: ${searchTerm}`);
+  }
+    function addToCart(bookTitle) {
+      alert(`${bookTitle} added to cart!`); 
+    }
+
+    function toggleSection(section) {
+      const sectionElement = document.querySelector(`.${section}`);
+      sectionElement.style.display = sectionElement.style.display === 'none' ? 'block' : 'none';
+    }
+    function addUserReview() {
+  
+  const userReview = document.getElementById('userReview').value;
+
+  
+  const reviewParagraph = document.createElement('p');
+  reviewParagraph.textContent = userReview;
+
+  
+  const reviewsSection = document.querySelector('.reviews');
+  reviewsSection.appendChild(reviewParagraph);
+
+
+  document.getElementById('userReview').value = '';
+}
+
+   
+    function updateBookDetails(book) {
+      const breadcrumbElement = document.getElementById('breadcrumb');
+      const bookDetailsElement = document.getElementById('bookDetails');
+
+      breadcrumbElement.innerHTML = `
+        <a href="foxbooks.html">Home</a> > <a href="courses.html">Courses</a> > ${book.title}
+      `;
+
+      bookDetailsElement.innerHTML = `
+        <h2>${book.title}</h2>
+        <img src="${book.image}" alt="${book.title} Image">
+        <p><strong>Author:</strong> ${book.author}</p>
+        <p><strong>ISBN:</strong> ${book.isbn}</p>
+        <p><strong>Publisher:</strong> ${book.publisher}</p>
+        <p><strong>Published Year:</strong> ${book.publishedYear}</p>
+        <p><strong>Course:</strong> ${book.course}</p>
+        <p><strong>Price:</strong> $${book.price}</p>
+        
+        <button onclick="addToCart('${book.title}')">Add to Cart</button>
+
+      <div class="reviews">
+        <h3>Customer Reviews</h3>
+        ${book.reviews.map(review => `<p>${review}</p>`).join('')}
+      </div>
+
+      <div class="related-books-toggle toggle-btn" onclick="toggleSection('related-books')">Toggle Related Books</div>
+      <div class="related-books">
+        <h3>Related Books</h3>
+        <ul>
+          ${book.relatedBooks.map(relatedBook => `<li><a href="${relatedBook.link}">${relatedBook.title}</a></li>`).join('')}
+        </ul>
+      </div>
+      `;
+    }
+
+    
+    const bookData = {
+      title: "Python Programming",
+      image: "python for beginners cover.jpg",
+      author: "John Doe",
+      isbn: "978-0123456789",
+      publisher: "Tech Press",
+      publishedYear: 2020,
+      course: "Introduction to Computer Science",
+      price: 19.99,
+      reviews: [
+    "Excellent book! Highly recommended!",
+    "Very informative. Great for beginners.",
+    "Can't believe I didn't buy sooner."
+  ],
+  relatedBooks: [
+    { title: "Introduction to Algorithms", link: "404.html" },
+    { title: "JavaScript: The Good Parts", link: "404.html" }
+  ],
+};
+
+
+    
+    updateBookDetails(bookData);
+  </script>
+    <footer>
+        &copy; 2023 FoxBooks. All rights reserved.
+         | 
+        <a href="ContactFB.html">Contact</a>
+    </footer>
+
+</body>
+</html>
