@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>FoxBooks - Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 80px;
+    }
+
+    h1 {
+      background: linear-gradient(to right, yellow, red); 
+      padding: 10px; 
+      text-align: center; 
+      margin: 3px;
+    }
+
+    h1 img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 5px;
+    }
+
+    nav {
+      background-color: #333;
+      color: white;
+      text-align: left;
+      padding-top: 10px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      justify-content: space-between;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav li {
+      display: inline;
+      margin-right: 10px;
+      position: relative;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 15px;
+      display: inline-block;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .shopping-cart-link {
+      margin-left:auto;
+      display: flex;
+      align-items: center; 
+      float: right;
+    }
+    nav a:hover {
+      background-color: #C8102E;
+    }
+    nav ul li a {
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul li a i {
+      margin-right: 5px; 
+    }
+
+    .profile-section {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 100px;
+      text-align: center;
+      background-color: #d4d3d3; 
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav>
+    <ul>
+      <li><a href="Home Page FB.html">Home</a></li>
+      <li><a href="Reviews Page FB.html">Products</a></li>
+      <li><a href="Courses.html">Courses</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li>
+          <a href="CheckoutFB.html"><i class="fas fa-shopping-cart"></i> Shopping Cart</a>
+      </li>
+  </ul>
+    <h1><img src="fox-books-high-resolution-logo-transparent.png" alt="FoxBooks logo"></h1>
+  </nav>
+
+  <div class="breadcrumb" id="breadcrumb">
+    <a href="Home Page FB.html">Home</a> > Profile
+  </div>
+
+
+  <div class="profile-section">
+    <h2>User Profile</h2>
+    
+    <div class="profile-card">
+      <h3>Name and Nickname</h3>
+      <p>Name: John Doe</p>
+      <p>Nickname: Johnny</p>
+    </div>
+
+    <div class="profile-card">
+      <h3>Summary and About</h3>
+      <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>About: Nullam nec interdum enim. Vivamus sit amet metus in nisi fermentum accumsan.</p>
+    </div>
+
+    <div class="profile-card">
+      <h3>Education</h3>
+      <p>School: Marist</p>
+      <p>Major: Computer Science</p>
+    </div>
+
+    <div class="profile-card">
+      <h3>Interests</h3>
+      <p>Interest 1: Reading</p>
+      <p>Interest 2: Coding</p>
+    </div>
+
+    <div class="profile-card">
+      <h3>Achievements</h3>
+      <p>Achievement 1: Completed Web Development Course</p>
+      <p>Achievement 2: Published a Research Paper</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2023 FoxBooks. All rights reserved.
+     | 
+    <a href="ContactFB.html">Contact</a>
+  </footer>
+</body>
+</html>
